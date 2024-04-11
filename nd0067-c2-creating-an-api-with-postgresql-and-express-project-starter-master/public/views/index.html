@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+    />
+    <title>BuildFront Product Backend Stack</title>
+  </head>
+  <body>
+    <div class="container py-5">
+      <h3 class="text-center text-uppercase">BuildFront Product Backend</h3>
+      <h5 class="alert alert-dark">Overview</h5>
+
+      <section>
+        <h5>Summary</h5>
+        <p>
+          The company stakeholders want to create an online storefront to showcase their great product ideas. <br/>
+          Users need to be able to browse an index of all products, see the specifics of a single product, and add products to an order that they can view in a cart page. <br/>
+          You have been tasked with building the API that will support this application, and your coworker is building the frontend.
+        </p>
+      </section>
+      <section>
+        <p>To create an online storefront, I've implemented some APIs for Product, Order, Order Product</p>
+      </section>
+
+      <h5 class="alert alert-dark">Documentation</h5>
+      <h6><b>API List</b></h6>
+
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Endpoint</th>
+            <th scope="col">Method</th>
+            <th scope="col">Param</th>
+            <th scope="col">Return</th>
+            <th scope="col">Example</th>
+            <th scope="col">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>http://localhost:8080/</td>
+            <td>GET</td>
+            <td>
+              <b>None</b>
+            </td>
+            <td>Overview The Storefront Product API</td>
+            <td>
+              <b>None</b>
+            </td>
+            <td>
+              Go to <b>Overview</b> of Storefront Product API
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>
+              <ol>
+                <li>http://localhost:8080<code>/users</code></li>
+                <li>http://localhost:8080<code>/users/signUp</code></li>
+                <li>http://localhost:8080<code>/users/login</code></li>
+                <li>http://localhost:8080<code>/users/</code></li>
+              </ol>
+            </td>
+            <td>
+              <ol>
+                <li>
+                  <p>GET (<small>Send API <code>POST /login</code> to get token then send this API</small>)</p>
+                </li>
+                <li>POST</li>
+                <li>POST</li>
+                <li>DELETE</li>
+              </ol>
+            </td>
+            <td>
+              <ol>
+                <li>null</li>
+                <li>username (*) password (*) firstname - lastname</li>
+                <li>username (*) password (*)</li>
+                <li>null</li>
+              </ol>
+            </td>
+            <td>
+              <ol>
+                <li>Show list users in the system</li>
+                <li>Return id and username when create successfully.</li>
+                <li>Return a token when login successfully</li>
+                <li>Return success when delete user successfully.</li>
+              </ol>
+            </td>
+            <td>
+              <ol>
+                <li><a href="http://localhost:8080/users" target="_blank">GET http://localhost:8080/users</a> <br /></li>
+                <li><a href="http://localhost:8080/users/signUp" target="_blank">POST http://localhost:8080/users/signUp</a> <br /></li>
+                <li><a href="http://localhost:8080/users/login" target="_blank">POST http://localhost:8080/users/login</a> <br /></li>
+                <li><a href="http://localhost:8080/users" target="_blank">DELETE http://localhost:8080/users</a> <br /></li>
+              </ol>
+            </td>
+            <td>
+              Show list users - Sign In - Sign Up and Delete a user
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">3</th>
+
+            <td>
+              <ol>
+                <li>http://localhost:8080<code>/products</code></li>
+                <li>http://localhost:8080<code>/products/:id</code></li>
+                <li>http://localhost:8080<code>/products</code></li>
+                <li>http://localhost:8080<code>/products</code></li>
+              </ol>
+            </td>
+            <td>
+              <ol>
+                <li>
+                  <p>GET</p>
+                </li>
+                <li>GET</li>
+                <li>POST <small>(Need <code>token</code> at headers)</small></li>
+                <li>DELETE <small>(Need <code>token</code> at headers)</small></li>
+              </ol>
+            </td>
+            <td>
+              <ol>
+                <li>null</li>
+                <li>productId</li>
+                <li>{name, price}</li>
+                <li>productName</li>
+              </ol>
+            </td>
+            <td>
+              <ol>
+                <li>Show list products in the system</li>
+                <li>Return id and username when create successfully.</li>
+                <li>Return a token when login successfully</li>
+                <li>Return success when delete user successfully.</li>
+              </ol>
+            </td>
+            <td>
+              <ol>
+                <li><a href="http://localhost:8080/products" target="_blank">GET http://localhost:8080/products</a> <br /></li>
+                <li><a href="http://localhost:8080/products/:id" target="_blank">GET http://localhost:8080/products</a> <br /></li>
+                <li><a href="http://localhost:8080/products/" target="_blank">POST http://localhost:8080/products</a> <br /></li>
+                <li><a href="http://localhost:8080/products" target="_blank">DELETE http://localhost:8080/products</a> <br /></li>
+              </ol>
+            </td>
+            <td>
+              Get all of products - Get product by product Id - Create/ Delete a product
+            </td>
+          </tr>
+
+          <tr>
+            <th scope="row">4</th>
+            <td>
+              <ol>
+                <li>http://localhost:8080<code>/orders</code></li>
+                <li>http://localhost:8080<code>/orders/:userId</code></li>
+                <li>http://localhost:8080<code>/orders</code></li>
+                <li>http://localhost:8080<code>/orders</code></li>
+                <li>http://localhost:8080<code>/orders/products</code></li>
+                <li>http://localhost:8080<code>/orders/products</code></li>
+              </ol>
+            </td>
+            <td>
+              <ol>
+                <li>GET</li>
+                <li>GET</li>
+                <li>POST <small>(Need <code>token</code> at headers)</small></li>
+                <li>DELETE <small>(Need <code>token</code> at headers)</small></li>
+                <li>POST <small>(Need <code>token</code> at headers)</small></li>
+                <li>DELETE <small>(Need <code>token</code> at headers)</small></li>
+              </ol>
+            </td>
+            <td>
+              <ol>
+                <li>null</li>
+                <li>userId</li>
+                <li>{ userId, status }</li>
+                <li>orderId</li>
+                <li>{ orderId, productId, quantity }</li>
+                <li>orderProductId</li>
+              </ol>
+            </td>
+            <td>
+              <ol>
+                <li>Show list orders in the system</li>
+                <li>Get order by user id</li>
+                <li>Create a order successfully.</li>
+                <li>Delete a order successfully.</li>
+                <li>Create a order product</li>
+                <li>Delete a order product</li>
+              </ol>
+            </td>
+            <td>
+              <ol>
+                <li><a href="http://localhost:8080/orders">GET http://localhost:8080<code>/orders</code></a></li>
+                <li><a href="http://localhost:8080/orders/1">GET http://localhost:8080<code>/orders/:userId</code></a></li>
+                <li><a href="http://localhost:8080/orders">POST http://localhost:8080<code>/orders</code></a></li>
+                <li><a href="http://localhost:8080/orders">DELETE http://localhost:8080<code>/orders</code></a></li>
+                <li><a href="http://localhost:8080/orders/products">POST http://localhost:8080<code>/orders/products</code></a></li>
+                <li><a href="http://localhost:8080/orders/products">DELETE http://localhost:8080<code>/orders/products</code></a></li>
+              </ol>
+            </td>
+            <td>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
