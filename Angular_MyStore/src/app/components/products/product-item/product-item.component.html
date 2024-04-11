@@ -1,0 +1,37 @@
+<div class="card" style="width: 23rem">
+  <form (ngSubmit)="addToCart(product)" novalidate>
+    <a routerLink="/products/{{ product.id }}">
+      <img
+        [src]="product.image"
+        class="card-img-top card-img-style"
+        alt="Product 1"
+        width="300"
+        height="300"
+      />
+    </a>
+    <div class="card-body text-center">
+      <h4 class="card-title card__product-name">{{ product.name }}</h4>
+      <p class="cart-item__price">
+        <b
+          >Price: <b class="text-success">${{ product.price }}</b></b
+        >
+      </p>
+
+      <select
+        [(ngModel)]="selectedAmount"
+        class="product-item-detail form-select"
+        (ngModelChange)="selectedChangeAmount($event)"
+        [ngModelOptions]="{ standalone: true }"
+      >
+        <option *ngFor="let value of selectAmounts" value="{{ value }}">
+          {{ value }}
+        </option>
+      </select>
+    </div>
+    <div class="card-footer text-center">
+      <button class="btn btn-primary" type="submit">
+        <fa-icon [icon]="faCartPlus"></fa-icon>&nbsp;Add To Cart
+      </button>
+    </div>
+  </form>
+</div>

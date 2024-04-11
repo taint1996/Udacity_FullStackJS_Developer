@@ -1,0 +1,92 @@
+<div>
+  <form
+    (ngSubmit)="onSubmitCheckout()"
+    class="form-group"
+    [formGroup]="createCheckoutForm"
+  >
+    <!-- Enter the Fullname  -->
+    <div class="mb-3">
+      <label class="form-label">Full name</label>
+      <input
+        class="form-control"
+        type="text"
+        formControlName="fullName"
+        placeholder="Enter Full Name (minium 3 characters)"
+        minlength="3"
+        required
+        [ngClass]="{
+          'is-invalid': submitted && fullName?.touched && fullName?.errors
+        }"
+      />
+      <section>
+        <div *ngIf="fullName?.invalid && (fullName?.dirty || fullName?.touched)" class="alert alert-danger mt-2">
+          <div *ngIf="fullName?.errors?.['required']">
+            The Full Name field is required.
+          </div>
+
+          <div *ngIf="fullName?.errors?.['minlength']">
+            Please enter your full name. Your Name must be at least 3 characters.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Enter the Address  -->
+    <div class="mb-3">
+      <label class="form-label">Address</label>
+      <input
+        name="address"
+        type="text"
+        formControlName="address"
+        class="form-control"
+        placeholder="Enter your address (minium 6 characters)"
+        minlength="6"
+        required
+        [ngClass]="{
+          'is-invalid': submitted && address?.touched && address?.errors
+        }"
+      />
+
+      <section>
+        <div *ngIf="address?.invalid && (address?.dirty || address?.touched)" class="alert alert-danger mt-2">
+          <div *ngIf="address?.errors?.['required']">
+            The Address field is required.
+          </div>
+
+          <div *ngIf="address?.errors?.['minlength']">
+            Please enter your address. Your address must be at least 6 characters.
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Enter the credit card -->
+    <div class="mb-3">
+      <label class="form-label">Credit card number</label>
+      <input
+        name="creditCard"
+        type="number"
+        formControlName="creditCard"
+        class="form-control"
+        placeholder="Enter your Credit card(16-digit number)"
+        maxlength="16"
+        [ngClass]="{
+          'is-invalid': submitted && creditCard?.touched && creditCard?.errors
+        }"
+        pattern="[0-9]{1,5}"
+      />
+
+      <section>
+        <div *ngIf="creditCard?.invalid && (creditCard?.dirty || creditCard?.touched)" class="alert alert-danger mt-2">
+          <div *ngIf="creditCard?.errors?.['required']">
+            The Credit Card field is required. Please enter your valid Credit card. Your Credit Card must be at least 16 characters.
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="text-muted">
+      We'll never share your payment details with anyone else.
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

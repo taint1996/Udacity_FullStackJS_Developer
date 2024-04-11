@@ -1,0 +1,60 @@
+<div class="container py-5">
+  <div class="row align-items-center">
+    <div class="col-6" *ngIf="cart.length; else warningEmptyCart">
+      <div *ngFor="let cartProduct of cart" class="row cart-item py-3">
+        <div class='col'>
+          <img
+            class="product-item__image"
+            src="{{ cartProduct.image }}"
+          />
+        </div>
+        <div class="cart-panel col text-center">
+          <h5 class="cart-detail">{{ cartProduct.name }}</h5>
+          <h5 class="cart-detail text-success">{{ cartProduct.price | currency: "USD" }}</h5>
+          <div class="cart-detail">
+            <select
+              #cart
+              (ngModelChange)="selectedChangeAmount(cart.value, cartProduct)"
+              style="width: 200px"
+              class="form-select align-items-center"
+              aria-label="Default select example"
+            >
+              <option
+                *ngFor="let option of amounts"
+                [ngValue]="option"
+                [selected]="cartProduct.amount === option"
+              >
+                {{ option }}
+              </option>
+            </select>
+          </div>
+          <div class="cart-detail py-2">
+            <button
+              (click)="deletedItem(cartProduct.id)"
+              class="btn btn-primary"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="cart-item">
+        <h5 class="price">
+          <span>
+            <b class='text-muted'>Total Price: </b>
+            <b>{{ totalPrice | currency: "USD" }}</b>
+          </span>
+        </h5>
+      </div>
+    </div>
+    <div class="col-6">
+      <app-user-information (userInfo)="onSubmitCheckout($event)"></app-user-information>
+    </div>
+  </div>
+</div>
+
+<ng-template #warningEmptyCart>
+  <div class="warning-message">
+    Cart is empty! Please, <a routerLink="/"> add product</a>.
+  </div>
+</ng-template>

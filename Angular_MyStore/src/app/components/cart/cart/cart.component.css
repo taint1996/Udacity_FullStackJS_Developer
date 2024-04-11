@@ -1,0 +1,14 @@
+.cart-detail select {
+  position: relative;
+  margin: auto;
+}
+
+.price {
+  color: #82d173;
+}
+
+.product-item__image {
+  border-radius: 50px;
+  width: 150px;
+  height: 200px;
+}
